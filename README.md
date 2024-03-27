@@ -11,7 +11,7 @@ Welcome to my **stats220** repository. This repository is hub that holds the fil
 There are 5 projects in total, and each project is assigned a folder named 'projectX' where 'X' represents the project number.
 
 1. _The usage of R to create meme GIFs and images_
-2. _TBD_
+2. _Analysing data collected by Google forms using R_
 3. _TBD_
 4. _TBD_
 5. _TBD_

@@ -1,0 +1,114 @@
+---
+title: "Project 2"
+subtitle: "STATS 220 Semester One 2024"
+author: "Arman Naderi mnad646"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{css}
+h2{
+  color: blue;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+```
+## Intoduction
+
+For this report, I chose to focus on exercise behaviour. I wanted to understand often people exercise and what factors could influence their exercise routines.
+
+When designing the form, I chose to ask simple questions that would ask for numeric data along with motivational questions that, couple together, could show a correlation for fluctuations of exercise behaviour over weeks. This is coupled with answer boxes that can allow only specific inputs with, in some instances, the help of regex that prevents the addition useless data that could possibly affect the conclusion.
+
+By asking "how many days of the week one exercises "How many days did you exercise this week?" and "How many hours did you spend this week exercising?", we can collect such data and plot the numeric data over time to see how it changes. For example, taking data about how much time one spends exercising per week and asking "What motivates you to exercise?", we could track a person's consistency and could possibly relate changes in time spent exercising to their fluctuating motivation. 
+
+Furthermore, we could analyse the ratio between how many days a person exercises compared to how may hours they exercise in total to try and understand how long their sessions are. This can be coupled with the question "Do you listen to music while you exercise?" to see if music would possibly allow for one to have longer exercise sessions or exercise more often throughout the week.
+
+We could also see if the question "Is the Gym the primary place where you exercise?" gives us insight onto how often one exercises during the week. Because cycling is considered an exercise and it may be that person's method of commuting to work or university and how over time that could change with school or work holidays. We could also see if there is a correlation between going to the Gym and how long one exercises; if that person chooses to exercise outside of the Gym environment, how would that affect how often and how long they exercise. Different environments could lead to more distractions and less motivation.
+
+The link for my Google form is [HERE](https://forms.gle/atvroWuyU5k8aCFN9).
+
+## Analytics
+
+My mode calculation from my analytics show that the majority did not exercise that week.
+My mode calculation from my analytics also show that the majority that did exercise, did so at the Gym.
+The  hours exercised bar graph demonstrates a right skew showing that the majority exercise between 0-3 hours a week.
+
+``` {r code-chunk, eval = TRUE}
+
+library(tidyverse)
+
+# Reading data from my CSV and putting into the data frame learning_data
+learning_data = read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQkKN1kY2z2FC2C8sjOWu8ihVRI0J7AwMAFA9ha2qEh4eVHCRY4W8yp0w2Ofpx06mKm065LWRnK9_-l/pub?output=csv')
+
+# Renaming my variables
+renamed_data = learning_data %>%
+  rename(date = 1,
+         days_exercising = 2,
+         hours_exercising = 3,
+         gym_attendance = 4,
+         music = 5,
+         exercise_motivation = 6)
+
+#Piping the data frame to make bar graphs
+days_exercising_bar = renamed_data %>% 
+  ggplot() + geom_bar(aes(x = days_exercising), col = "purple")
+
+hours_exercising_bar = renamed_data %>% 
+  ggplot() + geom_bar(aes(x = hours_exercising), col = "green")
+
+gym_attendance_bar = renamed_data %>%
+  ggplot() + geom_bar(aes(x = gym_attendance), col = "red")
+
+# Finding the mode for days/hours excercised and gym attendance
+mode_days_exercising = renamed_data %>%
+  count(days_exercising) %>%
+  filter(n == max(n)) %>%
+  pull(days_exercising)
+
+mode_hours_exercising = renamed_data %>%
+  count(hours_exercising) %>%
+  filter(n == max(n)) %>%
+  pull(hours_exercising)
+
+mode_gym_attendance = renamed_data %>%
+  count(gym_attendance) %>%
+  filter(n == max(n)) %>%
+  pull(gym_attendance)
+
+# Running the mode functions to see the most common outcome
+mode_gym_attendance
+mode_days_exercising
+mode_hours_exercising
+
+# Running the bar charts
+hours_exercising_bar
+days_exercising_bar
+gym_attendance_bar
+
+```
+
+
+## Creativity
+
+For the Google forms, I used regex for the first two questions that denies any invalid inputs. If an invalid input is given, the form states that it is invalid and show the range of valid inputs that are accepted by the given regex.
+
+Used pipes and functions such as filter, pull and count to find the three modes for my summary analytics.
+
+
+## Learning reflection
+
+### What I have learned
+
+I have learned how to use Google forms to create questions and how to send them to others. While creating the questions, I learned how to use regex to create valid inputs for some of my questions which allows me to deny any invalid inputs. Then I understood how to connect the data I had just collected from the Google forms to Google sheets and how to publish that as a CSV that then allows us to plug into R to analyse and critique.
+
+Within R, I have learned how to use even more functions from the tidyverse library that allows me to transform CSV data into bar graphs and statistical summaries.
+
+### What more I would like to learn
+
+I would like to learn more about how companies manage such data. With these forms, there is a possibility that a bot or some sort of program could answer such questions. How would such data be separated from the data that is collected by humans? Companies are collecting terabytes of data, how would they manage to find what data is useful for their purposes and which ones are not. With Twitter having 76% of their traffic during the Superbowl be bots, it seems like the advancements in AI are faster in the advancements in bot detection, so can companies combat this with their own AI implementations?
+

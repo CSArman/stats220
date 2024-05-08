@@ -1,0 +1,72 @@
+---
+title: "Project 4"
+subtitle: "Visualising data about videos from the YouTube channels Justin Sung and justmehabibi"
+author: "Arman Naderi mnad646"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{css echo=FALSE}
+body {
+	background: black
+}
+
+div {
+color: white
+}
+
+h1{
+  font-size: 28px
+  font-family: 'Sego UI', sans-serif;
+  color: #99ccd0;
+}
+
+h2{
+  color: #31ccd0;
+  text-shadow: 2px 2px 4px rgba(1, 1, 1, 0.6);
+}
+
+h3{
+  color: #fb8982
+}
+
+h4{
+  color: yellow
+}
+```
+
+
+## Introduction
+The two channels I chose were Justin Sung and justmehabibi. I chose Justin Sung because he is a learning coach, who used to be a medical doctor in NZ, that now spends his time teaching students and businesses how to study more efficiently and more thus more effectively. I chose justmehabibi because of his quality humor and semi-serious coverage of ongoing trends on the internet.
+
+Ideas for data visualisations: I could create pie charts for both channels and compare percentage differences, perhaps between their titles or comments or views, to see which channel contributes most to the total percentage of data I'm investigating. For example, for the entire data, how many videos have more than X views and which channel contributes the most to total. I could also create data visualisations for their user interactions, eg viewer to comment or viewer to like ratios or like to dislike ratios, to see which channel has more user interaction with the video per viewer.
+
+At first, I wanted to get the like to dislike ratio for each video and compare the two channels to see which channel seems to have more positive ratios. However, it seems like YouTube does not publicly show the API to gain the dislikes of a specific video. There is a browser extension that shows the hidden dislikes but I do not know how to integrate or collect the data from it. Therefore, I decided to focus on the interaction of the viewers, by which what ratio of the people who watched the video interacted with the video in the form of likes. Which then lead me to use a box chart to visualise the mean, upper, lower quartiles and any extreme values in the data. I also noticed emojis in some of justmehabibi's titles so I wanted to investigate what percentage of titles had emojis, and a pie chart seemed a good way to see at a glance if emojis were prevalent or not.
+
+
+## Dynamic data story
+![](data_story.gif)
+
+Creativity:
+
+While creating my plots, I had to use many new functions and libraries. I could not find a native way to add a pie chart so I used geom_bar and a couple of pipes into various functions to make the data seem like a pie chart. Furthermore, I imported the 'emoji' library which allowed me to use a function to detect emojis within my data set. Lastly, I imported the patchwork library which allowed me to patch together two different plots next to each which is useful for comparison, as seen on slide 4 of the data_story gif.
+
+
+## Learning reflection
+
+In this chapter I learned more about data visualisations and different geoms that we could use to convey our data. For instance, geom_jitter and geom_boxplot that I used for visualisations of my data for this project along with more functions to manipulate and sort data points, for example using the reorder function or arguments in labs to change plot names. 
+
+I would like to further investigate APIs and how to access and use them to collect data. Like for instance, there is a browser extension that can access data from YouTube that is not publicly avaliable. It can bring back the dislike count for a video even though YouTube explicitly removed it before. How would such an application work and how does it gather that data. I would also like to explore more Google APIs and how they can be used across different Google products as sort of tech ecosystem.
+
+## Appendix
+
+```{r file='visualisations.R', eval=FALSE, echo=TRUE}
+
+```
+
+```{r file='data_story.R', eval=FALSE, echo=TRUE}
+
+```

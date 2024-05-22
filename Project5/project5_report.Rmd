@@ -1,0 +1,58 @@
+---
+title: "Project 5"
+subtitle: "Creating data from digital sources"
+author: "Arman Naderi mnad646"
+output:
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+## Part A
+
+I explored job listings for Software developement. I explored this context because I wanted to see job prospects/info about the jobs I want to apply for in the future. I wanted to explore the number of job listings, the titles, and if the jobs offered were contract, part time or full time. I'd like to expand on this in the future by looking at data from seek.co.au and other job posting websites to compare job prospects in NZ compared to other countries.
+
+```{r file='partA.R'}
+
+
+```
+
+## Part B
+
+```{r file='partB.R', results='hide'}
+
+```
+
+The percentage of my chosen Minister's releases that contain a recommendation is $`r percentage_includes_recommendation`$%
+
+The percentage of my chosen Minister's releases that contain monetary information is $`r percentage_includes_monetary_info`$%
+
+The mean number of characters in my chosen Minister's release titles was $`r round(mean_title_length)`$
+
+The mean number of sentences in my chosen Minister's release contents were $`r round(mean_num_sentences)`$
+
+
+## Part C
+
+```{r file='partC.R'}
+
+```
+
+### Visualisation insights
+
+The visualisations shows that the amount of speeches, for all keywords, increased drastically from 1996 to 2007 but then sharply fell in the following years after and stayed **around 50-120** speeches up to the modern day.
+
+## Learning reflection
+
+I learned how to use use the new library, rvest, and it's functions to scrape data from the web. I also learned more about how websites are organised, like using classes or ids or headers, and how to identify such in inspect element to use for web scraping.
+
+I would like to further learn more about web scraping, specifically how to look at specific job positings on websites like Linkedin and be able to take out key words for that job. For example, using web scraping to find the technologies that are used by a developer and being able to compile a table that shows the most commonly listed technologies that is shown for the given developer's job listings. This would help us focus on the technologies that companies actually look for in their hirings.
+
+# Self review
+
+I believe that I have further enhanced my ability to code, specifically using R within this course. The programming concepts I have learned have allowed me to organise data and be able to use existing data/variables to create and modify new ones. I have also learned about HTML and how to select specific data from websites to scrape, and therefore use in reports to find discover new insights; this is done in an ethical and considerate manner, by which we respect the terms/conditions of the websites that we choose to scrape the data from. This manner also goes for data collection of individuals that, knowing the extent in how their data will be used, choose to participate in surveys created by us.
+
+
